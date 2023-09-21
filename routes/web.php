@@ -20,15 +20,19 @@ use App\Http\Controllers\Admin\PostController as AdminPostController;
 |
 */
 
-Route::get('/', [MainController::class, 'index'])
-    ->name('home');
+Route::get('/', [MainController::class, 'index'])->name('home');
 
-Route::prefix('admin')
-    ->name('admin.')
-    ->middleware(['auth', 'verified'])
-    ->group(function(){
-    Route::resources('posts', AdminPostController::class);
-    Route::get('dashboard', [AdminMainController::class, 'dashboard'])->name('dashboard');
+Route::prefix('admin')          // Il prefix è il prefisso dell'URI (cioè la parte iniziale dell'URI che definirò nelle rotte del gruppo)
+    ->name('admin.')            // Il name è il prefisso del nome delle rotte che definirò nel gruppo
+    ->middleware('auth')
+    ->group(function () {
+
+    Route::get('/dashboard', [AdminMainController::class, 'dashboard'])->name('dashboard');
+
+    Route::resource('posts', AdminPostController::class);
+    // Questo comando crea 7 rotte:
+    // 1 - Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin.posts.index');
+
 });
 
 require __DIR__.'/auth.php';

@@ -6,10 +6,8 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center text-primary">
-                        Welcome!
+                        Ciao per vedere i post devi eseguire il login
                     </h1>
-                    <br>
-                    La welcome page è una pagina pubblica (NON protetta)
                 </div>
             </div>
         </div>
